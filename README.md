@@ -1,1 +1,1 @@
-# identity-cli
+# identity-cli [![npm](https://img.shields.io/npm/v/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/identity-cli) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/blinkmobile/identity-cli?branch=master&svg=true)](https://ci.appveyor.com/project/blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli)
