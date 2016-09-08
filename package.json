@@ -1,5 +1,5 @@
 {
-  "name": "identity-cli",
+  "name": "@blinkmobile/identity-cli",
   "version": "1.0.0",
   "description": "Provides easy management of authenication for our CLI via a single identity.",
   "main": "index.js",
@@ -30,6 +30,14 @@
   "engines": {
     "node": ">=6",
     "npm": ">=3"
+  },
+  "bin": {
+    "blinkm-identity": "./bin/index.js"
+  },
+  "dependencies": {
+    "@blinkmobile/bm-identity": "2.0.0",
+    "meow": "^3.7.0",
+    "update-notifier": "^1.0.2"
   },
   "devDependencies": {
     "ava": "^0.15.2",
