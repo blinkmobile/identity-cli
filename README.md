@@ -1,4 +1,4 @@
-# Blink Identity CLI Tool [![npm](https://img.shields.io/npm/v/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli)
+# Blink Identity CLI Tool [![npm](https://img.shields.io/npm/v/@blinkmobile/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/@blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli)
 
 Provides easy management of authenication for our CLI via a single identity.
 

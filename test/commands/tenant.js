@@ -4,12 +4,22 @@ const test = require('ava');
 
 const tenantCommand = require('../../lib/commands/tenant.js');
 
+const TENANT_NAME = 'valid tenant name';
+const TENANTS = {
+  current: TENANT_NAME,
+  previous: [
+    TENANT_NAME
+  ]
+};
+const INPUT = [
+  TENANT_NAME
+];
 const FLAGS = {};
 const OPTIONS = {
   blinkMobileIdentity: {
-    getTenants: () => Promise.resolve(),
-    setTenant: () => Promise.resolve(),
-    removeTenant: () => Promise.resolve()
+    getTenants: () => Promise.resolve(TENANTS),
+    setTenant: () => Promise.resolve(TENANTS),
+    removeTenant: () => Promise.resolve(TENANTS)
   }
 };
 
@@ -23,12 +33,13 @@ test.afterEach(t => {
 
 test.serial.cb('tenantCommand() should resolve to a message displaying previous and current tenants', (t) => {
   console.log = function (content) {
-    t.is(content, `
-Success! Welcome to BlinkMobile. Be sure to logout when you're finished.
-`);
+    t.is(content, `Current Tenant: ${TENANTS.current || 'Unset'}
+Previous Tenants:
+  ${TENANTS.previous.sort().join(`
+  `)}`);
   };
 
-  tenantCommand(null, FLAGS, OPTIONS)
+  tenantCommand(INPUT, FLAGS, OPTIONS)
     .then(() => t.end())
     .catch(error => {
       t.fail(error);
@@ -36,18 +47,19 @@ Success! Welcome to BlinkMobile. Be sure to logout when you're finished.
     });
 });
 
-test.serial.cb('tenantCommand() should pass the flags argument to blinkMobileIdentity.login()', (t) => {
+test.serial.cb('tenantCommand() should call blinkMobileIdentity.getTenants() if no tenant is passed in', (t) => {
+  t.plan(1);
   const options = {
     blinkMobileIdentity: {
-      login: (flags) => {
-        t.deepEqual(flags, FLAGS);
-        return Promise.resolve();
+      getTenants: () => {
+        t.pass();
+        return Promise.resolve(TENANTS);
       }
     }
   };
   console.log = function () {};
 
-  tenantCommand(null, FLAGS, options)
+  tenantCommand([], FLAGS, options)
     .then(() => t.end())
     .catch(error => {
       t.fail(error);
@@ -55,15 +67,58 @@ test.serial.cb('tenantCommand() should pass the flags argument to blinkMobileIde
     });
 });
 
-test.serial.cb('tenantCommand() should log error if login rejects with error', (t) => {
+test.serial.cb('tenantCommand() should call blinkMobileIdentity.setTenant() if a tenant is passed in with no --remove flag', (t) => {
+  t.plan(1);
   const options = {
     blinkMobileIdentity: {
-      login: () => Promise.reject('Errror Message')
+      setTenant: (tenant) => {
+        t.is(tenant, TENANT_NAME);
+        return Promise.resolve(TENANTS);
+      }
+    }
+  };
+  console.log = function () {};
+
+  tenantCommand(INPUT, FLAGS, options)
+    .then(() => t.end())
+    .catch(error => {
+      t.fail(error);
+      t.end();
+    });
+});
+
+test.serial.cb('tenantCommand() should call blinkMobileIdentity.removeTenant() if a tenant is passed in with a --remove flag', (t) => {
+  t.plan(1);
+  const options = {
+    blinkMobileIdentity: {
+      removeTenant: (tenant) => {
+        t.is(tenant, TENANT_NAME);
+        return Promise.resolve(TENANTS);
+      }
+    }
+  };
+  console.log = function () {};
+
+  tenantCommand(INPUT, { remove: true }, options)
+    .then(() => t.end())
+    .catch(error => {
+      t.fail(error);
+      t.end();
+    });
+});
+
+test.serial.cb('tenantCommand() should log error if any tenant function rejects with error', (t) => {
+  t.plan(3);
+  const options = {
+    blinkMobileIdentity: {
+      getTenants: () => Promise.reject('Errror Message'),
+      setTenant: () => Promise.reject('Errror Message'),
+      removeTenant: () => Promise.reject('Errror Message')
     }
   };
   console.log = function (content) {
     t.is(content, `
-There was a problem while attempting to login:
+There was a problem attempting to use the tenant command:
 
 Errror Message
 
@@ -71,7 +126,11 @@ Please fix the error and try again.
 `);
   };
 
-  tenantCommand(null, FLAGS, options)
+  Promise.all([
+    tenantCommand([], FLAGS, options),
+    tenantCommand(INPUT, FLAGS, options),
+    tenantCommand(INPUT, { remove: true }, options)
+  ])
     .then(() => t.end())
     .catch(error => {
       t.fail(error);
