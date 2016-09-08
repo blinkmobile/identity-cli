@@ -22,22 +22,17 @@ test.afterEach(t => {
   console.log = t.context.log;
 });
 
-test.serial.cb('loginCommand() should resolve to a success message', (t) => {
+test.serial('loginCommand() should resolve to a success message', (t) => {
   console.log = function (content) {
     t.is(content, `
 Success! Welcome to BlinkMobile. Be sure to logout when you're finished.
 `);
   };
 
-  loginCommand(null, FLAGS, OPTIONS)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return loginCommand(null, FLAGS, OPTIONS);
 });
 
-test.serial.cb('loginCommand() should pass the flags argument to blinkMobileIdentity.login()', (t) => {
+test.serial('loginCommand() should pass the flags argument to blinkMobileIdentity.login()', (t) => {
   const options = {
     blinkMobileIdentity: {
       login: (flags) => {
@@ -48,15 +43,10 @@ test.serial.cb('loginCommand() should pass the flags argument to blinkMobileIden
   };
   console.log = function () {};
 
-  loginCommand(null, FLAGS, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return loginCommand(null, FLAGS, options);
 });
 
-test.serial.cb('loginCommand() should log error if login rejects with error', (t) => {
+test.serial('loginCommand() should log error if login rejects with error', (t) => {
   const options = {
     blinkMobileIdentity: {
       login: () => Promise.reject('Errror Message')
@@ -72,10 +62,5 @@ Please fix the error and try again.
 `);
   };
 
-  loginCommand(null, FLAGS, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return loginCommand(null, FLAGS, options);
 });

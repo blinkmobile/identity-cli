@@ -31,7 +31,7 @@ test.afterEach(t => {
   console.log = t.context.log;
 });
 
-test.serial.cb('tenantCommand() should resolve to a message displaying previous and current tenants', (t) => {
+test.serial('tenantCommand() should resolve to a message displaying previous and current tenants', (t) => {
   console.log = function (content) {
     t.is(content, `Current Tenant: ${TENANTS.current || 'Unset'}
 Previous Tenants:
@@ -39,15 +39,10 @@ Previous Tenants:
   `)}`);
   };
 
-  tenantCommand(INPUT, FLAGS, OPTIONS)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return tenantCommand(INPUT, FLAGS, OPTIONS);
 });
 
-test.serial.cb('tenantCommand() should call blinkMobileIdentity.getTenants() if no tenant is passed in', (t) => {
+test.serial('tenantCommand() should call blinkMobileIdentity.getTenants() if no tenant is passed in', (t) => {
   t.plan(1);
   const options = {
     blinkMobileIdentity: {
@@ -59,15 +54,10 @@ test.serial.cb('tenantCommand() should call blinkMobileIdentity.getTenants() if 
   };
   console.log = function () {};
 
-  tenantCommand([], FLAGS, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return tenantCommand([], FLAGS, options);
 });
 
-test.serial.cb('tenantCommand() should call blinkMobileIdentity.setTenant() if a tenant is passed in with no --remove flag', (t) => {
+test.serial('tenantCommand() should call blinkMobileIdentity.setTenant() if a tenant is passed in with no --remove flag', (t) => {
   t.plan(1);
   const options = {
     blinkMobileIdentity: {
@@ -79,15 +69,10 @@ test.serial.cb('tenantCommand() should call blinkMobileIdentity.setTenant() if a
   };
   console.log = function () {};
 
-  tenantCommand(INPUT, FLAGS, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return tenantCommand(INPUT, FLAGS, options);
 });
 
-test.serial.cb('tenantCommand() should call blinkMobileIdentity.removeTenant() if a tenant is passed in with a --remove flag', (t) => {
+test.serial('tenantCommand() should call blinkMobileIdentity.removeTenant() if a tenant is passed in with a --remove flag', (t) => {
   t.plan(1);
   const options = {
     blinkMobileIdentity: {
@@ -99,15 +84,10 @@ test.serial.cb('tenantCommand() should call blinkMobileIdentity.removeTenant() i
   };
   console.log = function () {};
 
-  tenantCommand(INPUT, { remove: true }, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return tenantCommand(INPUT, { remove: true }, options);
 });
 
-test.serial.cb('tenantCommand() should log error if any tenant function rejects with error', (t) => {
+test.serial('tenantCommand() should log error if any tenant function rejects with error', (t) => {
   t.plan(3);
   const options = {
     blinkMobileIdentity: {
@@ -126,14 +106,9 @@ Please fix the error and try again.
 `);
   };
 
-  Promise.all([
+  return Promise.all([
     tenantCommand([], FLAGS, options),
     tenantCommand(INPUT, FLAGS, options),
     tenantCommand(INPUT, { remove: true }, options)
-  ])
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  ]);
 });

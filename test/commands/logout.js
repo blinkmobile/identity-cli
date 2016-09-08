@@ -18,22 +18,17 @@ test.afterEach(t => {
   console.log = t.context.log;
 });
 
-test.serial.cb('logoutCommand() should resolve to a success message', (t) => {
+test.serial('logoutCommand() should resolve to a success message', (t) => {
   console.log = function (content) {
     t.is(content, `
 Success! See you next time.
 `);
   };
 
-  logoutCommand(null, null, OPTIONS)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return logoutCommand(null, null, OPTIONS);
 });
 
-test.serial.cb('logoutCommand() should log error if logout rejects with error', (t) => {
+test.serial('logoutCommand() should log error if logout rejects with error', (t) => {
   const options = {
     blinkMobileIdentity: {
       logout: () => Promise.reject('Errror Message')
@@ -49,10 +44,5 @@ Please fix the error and try again.
 `);
   };
 
-  logoutCommand(null, null, options)
-    .then(() => t.end())
-    .catch(error => {
-      t.fail(error);
-      t.end();
-    });
+  return logoutCommand(null, null, options);
 });
