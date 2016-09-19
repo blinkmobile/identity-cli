@@ -40,7 +40,7 @@
     "update-notifier": "^1.0.2"
   },
   "devDependencies": {
-    "ava": "^0.15.2",
+    "ava": "^0.16.0",
     "eslint": "^3.3.1",
     "eslint-config-semistandard": "^6.0.2",
     "eslint-config-standard": "^5.3.5",
@@ -50,6 +50,7 @@
     "flow-bin": "^0.30.0",
     "jsdoc": "^3.4.0",
     "mockery": "^1.4.1",
+    "npm-bin-ava-tester": "^1.0.0",
     "npm-run-all": "^2.2.2",
     "proxyquire": "^1.7.10",
     "yauzl": "^2.6.0"
