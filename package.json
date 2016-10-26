@@ -1,58 +1,57 @@
 {
   "name": "@blinkmobile/identity-cli",
-  "version": "1.1.0",
   "description": "Provides easy management of authenication for our CLI via a single identity.",
-  "main": "index.js",
-  "scripts": {
-    "ava": "ava",
-    "eslint": "eslint --fix --cache .",
-    "flow_check": "flow check || exit 0",
-    "fixpack": "fixpack",
-    "lint": "eslint .",
-    "make-docs": "jsdoc index.js ./lib -r -d ./jsdocs",
-    "test": "npm-run-all lint ava"
+  "version": "1.1.0",
+  "bin": {
+    "blinkm-identity": "./bin/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blinkmobile/identity-cli.git"
+  "bugs": {
+    "url": "https://github.com/blinkmobile/identity-cli/issues"
   },
+  "dependencies": {
+    "@blinkmobile/bm-identity": "2.1.0",
+    "meow": "3.7.0",
+    "update-notifier": "1.0.2"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "eslint": "^3.8.1",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "fixpack": "^2.3.1",
+    "flow-bin": "^0.33.0",
+    "jsdoc": "^3.4.2",
+    "mockery": "^2.0.0",
+    "npm-bin-ava-tester": "^1.0.0",
+    "npm-run-all": "^3.1.1",
+    "proxyquire": "^1.7.10",
+    "yauzl": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "homepage": "https://github.com/blinkmobile/identity-cli#readme",
   "keywords": [
     "BlinkMobile",
     "Cli",
     "Mobility"
   ],
-  "author": "",
   "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/blinkmobile/identity-cli/issues"
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blinkmobile/identity-cli.git"
   },
-  "homepage": "https://github.com/blinkmobile/identity-cli#readme",
-  "engines": {
-    "node": ">=6",
-    "npm": ">=3"
-  },
-  "bin": {
-    "blinkm-identity": "./bin/index.js"
-  },
-  "dependencies": {
-    "@blinkmobile/bm-identity": "2.1.0",
-    "meow": "^3.7.0",
-    "update-notifier": "^1.0.2"
-  },
-  "devDependencies": {
-    "ava": "^0.16.0",
-    "eslint": "^3.3.1",
-    "eslint-config-semistandard": "^6.0.2",
-    "eslint-config-standard": "^5.3.5",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0",
-    "fixpack": "^2.3.1",
-    "flow-bin": "^0.30.0",
-    "jsdoc": "^3.4.0",
-    "mockery": "^1.4.1",
-    "npm-bin-ava-tester": "^1.0.0",
-    "npm-run-all": "^2.2.2",
-    "proxyquire": "^1.7.10",
-    "yauzl": "^2.6.0"
+  "scripts": {
+    "ava": "ava",
+    "eslint": "eslint --fix --cache .",
+    "fixpack": "fixpack",
+    "flow_check": "flow check",
+    "make-docs": "jsdoc index.js ./lib -r -d ./jsdocs",
+    "posttest": "npm-run-all -p eslint flow_check fixpack",
+    "test": "npm-run-all ava"
   }
 }
