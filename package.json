@@ -30,7 +30,7 @@
     "yauzl": "^2.7.0"
   },
   "engines": {
-    "node": ">=6",
+    "node": ">=4",
     "npm": ">=3"
   },
   "homepage": "https://github.com/blinkmobile/identity-cli#readme",
