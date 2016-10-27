@@ -15,10 +15,12 @@ const OPTIONS = {
 };
 
 test.beforeEach(t => {
+  t.context.error = console.error;
   t.context.log = console.log;
 });
 
 test.afterEach(t => {
+  console.error = t.context.error;
   console.log = t.context.log;
 });
 
@@ -29,7 +31,8 @@ Success! Welcome to BlinkMobile. Be sure to logout when you're finished.
 `);
   };
 
-  return loginCommand(null, FLAGS, OPTIONS);
+  return loginCommand(null, FLAGS, OPTIONS)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('loginCommand() should pass the flags argument to blinkMobileIdentity.login()', (t) => {
@@ -43,24 +46,26 @@ test.serial('loginCommand() should pass the flags argument to blinkMobileIdentit
   };
   console.log = function () {};
 
-  return loginCommand(null, FLAGS, options);
+  return loginCommand(null, FLAGS, options)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('loginCommand() should log error if login rejects with error', (t) => {
   const options = {
     blinkMobileIdentity: {
-      login: () => Promise.reject('Errror Message')
+      login: () => Promise.reject('Error Message')
     }
   };
-  console.log = function (content) {
+  console.error = function (content) {
     t.is(content, `
 There was a problem while attempting to login:
 
-Errror Message
+Error Message
 
 Please fix the error and try again.
 `);
   };
 
-  return loginCommand(null, FLAGS, options);
+  return loginCommand(null, FLAGS, options)
+    .then(() => t.is(process.exitCode, 1));
 });

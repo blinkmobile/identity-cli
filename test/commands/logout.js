@@ -11,10 +11,12 @@ const OPTIONS = {
 };
 
 test.beforeEach(t => {
+  t.context.error = console.error;
   t.context.log = console.log;
 });
 
 test.afterEach(t => {
+  console.error = t.context.error;
   console.log = t.context.log;
 });
 
@@ -25,24 +27,26 @@ Success! See you next time.
 `);
   };
 
-  return logoutCommand(null, null, OPTIONS);
+  return logoutCommand(null, null, OPTIONS)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('logoutCommand() should log error if logout rejects with error', (t) => {
   const options = {
     blinkMobileIdentity: {
-      logout: () => Promise.reject('Errror Message')
+      logout: () => Promise.reject('Error Message')
     }
   };
-  console.log = function (content) {
+  console.error = function (content) {
     t.is(content, `
 There was a problem while attempting to logout:
 
-Errror Message
+Error Message
 
 Please fix the error and try again.
 `);
   };
 
-  return logoutCommand(null, null, options);
+  return logoutCommand(null, null, options)
+    .then(() => t.is(process.exitCode, 1));
 });
