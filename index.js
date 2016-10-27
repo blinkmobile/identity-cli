@@ -27,18 +27,21 @@ module.exports = function (input, flags) {
 
   if (!command) {
     console.log(help);
-    process.exit(0);
+    process.exitCode = 0;
+    return;
   }
 
   if (!commands[command]) {
     console.error(`unknown command: ${command}`);
     console.log(help);
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
 
   if (typeof commands[command] !== 'function') {
     console.log('not implemented');
-    process.exit(1);
+    process.exitCode = 1;
+    return;
   }
 
   commands[command](input.slice(1), flags, {
