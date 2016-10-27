@@ -24,10 +24,12 @@ const OPTIONS = {
 };
 
 test.beforeEach(t => {
+  t.context.error = console.error;
   t.context.log = console.log;
 });
 
 test.afterEach(t => {
+  console.error = t.context.error;
   console.log = t.context.log;
 });
 
@@ -39,11 +41,12 @@ Previous Tenants:
   `)}`);
   };
 
-  return tenantCommand(INPUT, FLAGS, OPTIONS);
+  return tenantCommand(INPUT, FLAGS, OPTIONS)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('tenantCommand() should call blinkMobileIdentity.getTenants() if no tenant is passed in', (t) => {
-  t.plan(1);
+  t.plan(2);
   const options = {
     blinkMobileIdentity: {
       getTenants: () => {
@@ -54,11 +57,12 @@ test.serial('tenantCommand() should call blinkMobileIdentity.getTenants() if no 
   };
   console.log = function () {};
 
-  return tenantCommand([], FLAGS, options);
+  return tenantCommand([], FLAGS, options)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('tenantCommand() should call blinkMobileIdentity.setTenant() if a tenant is passed in with no --remove flag', (t) => {
-  t.plan(1);
+  t.plan(2);
   const options = {
     blinkMobileIdentity: {
       setTenant: (tenant) => {
@@ -69,11 +73,12 @@ test.serial('tenantCommand() should call blinkMobileIdentity.setTenant() if a te
   };
   console.log = function () {};
 
-  return tenantCommand(INPUT, FLAGS, options);
+  return tenantCommand(INPUT, FLAGS, options)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('tenantCommand() should call blinkMobileIdentity.removeTenant() if a tenant is passed in with a --remove flag', (t) => {
-  t.plan(1);
+  t.plan(2);
   const options = {
     blinkMobileIdentity: {
       removeTenant: (tenant) => {
@@ -84,31 +89,35 @@ test.serial('tenantCommand() should call blinkMobileIdentity.removeTenant() if a
   };
   console.log = function () {};
 
-  return tenantCommand(INPUT, { remove: true }, options);
+  return tenantCommand(INPUT, { remove: true }, options)
+    .then(() => t.is(process.exitCode, undefined));
 });
 
 test.serial('tenantCommand() should log error if any tenant function rejects with error', (t) => {
-  t.plan(3);
+  t.plan(6);
   const options = {
     blinkMobileIdentity: {
-      getTenants: () => Promise.reject('Errror Message'),
-      setTenant: () => Promise.reject('Errror Message'),
-      removeTenant: () => Promise.reject('Errror Message')
+      getTenants: () => Promise.reject('Error Message'),
+      setTenant: () => Promise.reject('Error Message'),
+      removeTenant: () => Promise.reject('Error Message')
     }
   };
-  console.log = function (content) {
+  console.error = function (content) {
     t.is(content, `
 There was a problem attempting to use the tenant command:
 
-Errror Message
+Error Message
 
 Please fix the error and try again.
 `);
   };
 
   return Promise.all([
-    tenantCommand([], FLAGS, options),
-    tenantCommand(INPUT, FLAGS, options),
+    tenantCommand([], FLAGS, options)
+      .then(() => t.is(process.exitCode, 1)),
+    tenantCommand(INPUT, FLAGS, options)
+      .then(() => t.is(process.exitCode, 1)),
     tenantCommand(INPUT, { remove: true }, options)
+      .then(() => t.is(process.exitCode, 1))
   ]);
 });
