@@ -1,7 +1,7 @@
 {
   "name": "@blinkmobile/identity-cli",
   "description": "Provides easy management of authenication for our CLI via a single identity.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "bin": {
     "blinkm-identity": "./bin/index.js"
   },
