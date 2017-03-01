@@ -1,4 +1,4 @@
-# Blink Identity CLI Tool [![npm](https://img.shields.io/npm/v/@blinkmobile/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/@blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/1byjia4efwq4nquj?svg=true)](https://ci.appveyor.com/project/blinkmobile/identity-cli)
+# Blink Identity CLI Tool [![npm](https://img.shields.io/npm/v/@blinkmobile/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/@blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/1byjia4efwq4nquj?svg=true)](https://ci.appveyor.com/project/blinkmobile/identity-cli) [![Greenkeeper badge](https://badges.greenkeeper.io/blinkmobile/identity-cli.svg)](https://greenkeeper.io/)
 
 Provides easy management of authenication for our CLI via a single identity.
 
