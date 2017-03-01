@@ -16,7 +16,6 @@
   "devDependencies": {
     "ava": "^0.18.0",
     "eslint": "^3.8.1",
-    "eslint-config-semistandard": "^7.0.0",
     "eslint-config-standard": "^7.0.0",
     "eslint-plugin-node": "^4.0.0",
     "eslint-plugin-promise": "^3.3.0",
@@ -59,8 +58,8 @@
     "fixpack": "fixpack",
     "flow_check": "flow check",
     "make-docs": "jsdoc index.js ./lib -r -d ./jsdocs",
+    "postpublish": "greenkeeper-postpublish",
     "posttest": "npm-run-all -p eslint flow_check fixpack",
-    "test": "npm-run-all ava",
-    "postpublish": "greenkeeper-postpublish"
+    "test": "npm-run-all ava"
   }
 }
