@@ -9,7 +9,7 @@
     "url": "https://github.com/blinkmobile/identity-cli/issues"
   },
   "dependencies": {
-    "@blinkmobile/bm-identity": "2.3.3",
+    "@blinkmobile/bm-identity": "2.3.4",
     "meow": "3.7.0",
     "update-notifier": "2.1.0"
   },
