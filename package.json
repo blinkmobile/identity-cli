@@ -2,6 +2,7 @@
   "name": "@blinkmobile/identity-cli",
   "description": "Provides easy management of authenication for our CLI via a single identity.",
   "version": "1.1.2",
+  "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "bin": {
     "blinkm-identity": "./bin/index.js"
   },
@@ -15,18 +16,16 @@
   },
   "devDependencies": {
     "ava": "^0.19.0",
-    "eslint": "^3.8.1",
-    "eslint-config-standard": "^7.0.0",
-    "eslint-plugin-node": "^4.0.0",
-    "eslint-plugin-promise": "^3.3.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.2.0",
     "fixpack": "^2.3.1",
-    "flow-bin": "^0.43.0",
-    "greenkeeper-postpublish": "^1.0.1",
     "jsdoc": "^3.4.2",
     "mockery": "^2.0.0",
     "npm-bin-ava-tester": "^1.1.0",
-    "npm-run-all": "^4.0.0",
     "proxyquire": "^1.7.10",
     "yauzl": "^2.7.0"
   },
@@ -56,10 +55,8 @@
     "ava": "ava",
     "eslint": "eslint --fix --cache .",
     "fixpack": "fixpack",
-    "flow_check": "flow check",
     "make-docs": "jsdoc index.js ./lib -r -d ./jsdocs",
-    "postpublish": "greenkeeper-postpublish",
-    "posttest": "npm-run-all -p eslint flow_check fixpack",
-    "test": "npm-run-all ava"
+    "pretest": "npm run eslint && npm run fixpack",
+    "test": "npm run ava"
   }
 }
