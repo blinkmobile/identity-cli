@@ -1,6 +1,6 @@
-# Blink Identity CLI Tool [![npm](https://img.shields.io/npm/v/@blinkmobile/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/@blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/1byjia4efwq4nquj?svg=true)](https://ci.appveyor.com/project/blinkmobile/identity-cli) [![Greenkeeper badge](https://badges.greenkeeper.io/blinkmobile/identity-cli.svg)](https://greenkeeper.io/)
+# blinkmobile / identity-cli [![npm](https://img.shields.io/npm/v/@blinkmobile/identity-cli.svg?maxAge=2592000)](https://www.npmjs.com/package/@blinkmobile/identity-cli) [![Travis CI Status](https://travis-ci.org/blinkmobile/identity-cli.svg?branch=master)](https://travis-ci.org/blinkmobile/identity-cli) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/1byjia4efwq4nquj?svg=true)](https://ci.appveyor.com/project/blinkmobile/identity-cli) [![Greenkeeper badge](https://badges.greenkeeper.io/blinkmobile/identity-cli.svg)](https://greenkeeper.io/)
 
-Provides easy management of authenication for our CLI via a single identity.
+CLI to provide easy management of authentication with BlinkMobile.
 
 ## Installation
 
@@ -8,67 +8,55 @@ Provides easy management of authenication for our CLI via a single identity.
 npm install -g @blinkmobile/cli @blinkmobile/identity-cli
 ```
 
+## Documentation
+
+See the [Documentation](./docs/README.md) directory for more details.
+
 ## Usage
 
-`blinkm identity --help`
-
-or, shorter
-
-`bm identity --help`
-
-### Logging In
-
-Some BlinkMobile CLI tools require users to be authenticated before use.
-The `login` command will allow user to authenticate themselves with BlinkMobile via a variety of login providers
-
-`bm identity login` Start a browser based login process.
-- `--username <username>` Start a username and password login process. Omitting <username> will prompt for username.
-- `--password <password>` Specify password instead of being prompted.
-- `--email <emailAddress>` Start a passwordless email login process. Omitting <emailAddress> will prompt for email address.
-- `--sms <phoneNumber>` Start a passwordless sms login process. Omitting <phoneNumber> will prompt for phone number.
-
-To start a browser based login process, this is how users can login using a social account e.g. Google:
 ```sh
-bm identity login
+blinkm identity --help
+
+# or, shorter
+bm identity --help
 ```
 
-To start a username and password login process and be prompted for password:
-```sh
-bm identity login --username username@email.com
 ```
+Usage: blinkm identity <command>
 
-### Logging Out
+Where command is one of:
 
-Once you have finished using the CLI tools that required authentication, please remember to logout.
+  login, logout, tenant
 
-To start the logout process:
-```sh
-bm identity logout
-```
+Login
 
-### Manage Tenants
+  login                       => start the login process, if no flags are passed, a browser based login will begin
+    --username <username>     => username to login with, if password is not specified, you will be prompted for it
+    --password <password>     => password to login with, requires the username flag as well
+    --email <email>           => email address to send code to for passwordless authentication
+    --sms <phone>             => phone number to send code to for passwordless authentication
 
-Some BlinkMobile CLI tools require the user to select the Tenant they are currently working on
-The `tenant` command will allow user to:
-- Display current and previous tenants
-- Set a new tenant
-- Remove the current tenant and also remove from the list of previous
+Logout
 
-`bm identity tenant` Show current and previous tenants
-- `<tenantName>` Set as current and add <tenantName> to previous if new.
-- `<tenantName> --remove` Remove <tenantName> from previous tenants.
+  logout                      => logout of the service being extended
 
-To display current and previous tenants:
-```sh
-bm identity tenant
-```
+Setting tenant for services with multiple tenants:
 
-To set a new or previously used tenant
-```sh
-bm identity tenant nameoftenant
-```
+  tenant                      => Display current and available tenants.
+    <tenantName>              => Set as current tenant and add to available tenants
+    <tenantName> --remove     => Remove from available available tenants
 
-To remove a tenant
-```sh
-bm identity tenant nameoftenant --remove
+
+Examples
+  bm identity login --username
+  bm identity login --username email@provider.com
+  bm identity login --email
+  bm identity login --sms +61412345678
+  bm identity login
+
+  bm identity logout
+
+  bm identity tenant
+  bm identity tenant mytenant
+  bm identity tenant mytenant --remove
 ```
