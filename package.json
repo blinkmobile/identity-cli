@@ -1,6 +1,6 @@
 {
   "name": "@blinkmobile/identity-cli",
-  "description": "Provides easy management of authenication for our CLI via a single identity.",
+  "description": "CLI to provide easy management of authentication with BlinkMobile",
   "version": "1.1.2",
   "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "bin": {
