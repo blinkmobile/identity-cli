@@ -39,7 +39,9 @@ test.serial('loginCommand() should pass the flags argument to blinkMobileIdentit
   const options = {
     blinkMobileIdentity: {
       login: (flags) => {
-        t.deepEqual(flags, FLAGS)
+        t.deepEqual(flags, Object.assign({}, FLAGS, {
+          storeJwt: true
+        }))
         return Promise.resolve()
       }
     }
