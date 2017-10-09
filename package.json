@@ -12,7 +12,7 @@
   "dependencies": {
     "@blinkmobile/bm-identity": "3.0.0",
     "meow": "3.7.0",
-    "update-notifier": "2.2.0"
+    "update-notifier": "2.3.0"
   },
   "devDependencies": {
     "ava": "^0.22.0",
