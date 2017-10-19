@@ -1,6 +1,17 @@
 # Change Log
 
 
+## Unreleased
+
+
+## 1.2.0 - 2017-10-19
+
+### Dependencies
+
+-   update [@blinkmobile/bm-identity](https://www.npmjs.com/package/@blinkmobile/bm-identity) to [3.1.0](https://github.com/blinkmobile/bm-identity.js/releases/tag/3.1.0) (from [2.3.1](https://github.com/blinkmobile/bm-identity.js/releases/tag/2.3.1))
+
+-   update [update-notifier](https://www.npmjs.com/package/update-notifier) to 2.3.0 (from [1.0.3](https://github.com/yeoman/update-notifier/releases/tag/v1.0.3))
+
 ## 1.1.2 - 2017-01-16
 
 
