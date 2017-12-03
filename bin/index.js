@@ -15,17 +15,23 @@ const help = require('../lib/help')
 
 const cli = meow({
   help,
-  version: true
-}, {
-  boolean: [
-    'remove'
-  ],
-  string: [
-    'username',
-    'password',
-    'email',
-    'sms'
-  ]
+  flags: {
+    'remove': {
+      type: 'boolean'
+    },
+    'username': {
+      type: 'string'
+    },
+    'password': {
+      type: 'string'
+    },
+    'email': {
+      type: 'string'
+    },
+    'sms': {
+      type: 'string'
+    }
+  }
 })
 
 main(cli.input, cli.flags)
