@@ -1,7 +1,7 @@
 {
   "name": "@blinkmobile/identity-cli",
   "description": "CLI to provide easy management of authentication with BlinkMobile",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "BlinkMobile <developers@blinkmobile.com.au> (https://github.com/blinkmobile)",
   "bin": {
     "blinkm-identity": "./bin/index.js"
