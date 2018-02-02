@@ -3,6 +3,13 @@
 
 ## Unreleased
 
+## 1.2.1 - 2018-02-02
+
+### Dependencies
+
+-   update [@blinkmobile/bm-identity](https://www.npmjs.com/package/@blinkmobile/bm-identity) to [4.0.0](https://github.com/blinkmobile/bm-identity.js/blob/master/CHANGELOG.md) (from [3.1.0](https://github.com/blinkmobile/bm-identity.js/blob/master/CHANGELOG.md))
+
+-   update [meow](https://www.npmjs.com/package/meow) to 4.0.0 (from 3.7.0)
 
 ## 1.2.0 - 2017-10-19
 

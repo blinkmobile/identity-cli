@@ -1,7 +1,7 @@
 {
   "name": "@blinkmobile/identity-cli",
   "description": "CLI to provide easy management of authentication with BlinkMobile",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "BlinkMobile <developers@blinkmobile.com.au> (https://github.com/blinkmobile)",
   "bin": {
     "blinkm-identity": "./bin/index.js"
@@ -14,7 +14,7 @@
     "Matt Carroll <matt.carroll139@gmail.com> (https://github.com/mymattcarroll)"
   ],
   "dependencies": {
-    "@blinkmobile/bm-identity": "4.0.0",
+    "@blinkmobile/bm-identity": "4.0.1",
     "meow": "4.0.0",
     "update-notifier": "2.3.0"
   },
