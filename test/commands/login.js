@@ -6,7 +6,8 @@ const loginCommand = require('../../lib/commands/login.js')
 
 const FLAGS = {
   text: 'abc',
-  numbers: 123
+  numbers: 123,
+  rememberMe: false
 }
 const OPTIONS = {
   blinkMobileIdentity: {
@@ -40,6 +41,7 @@ test.serial('loginCommand() should pass the flags argument to blinkMobileIdentit
     blinkMobileIdentity: {
       login: (flags) => {
         t.deepEqual(flags, Object.assign({}, FLAGS, {
+          refreshToken: FLAGS.rememberMe,
           storeJwt: true
         }))
         return Promise.resolve()

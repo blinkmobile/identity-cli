@@ -33,8 +33,6 @@ Login
   login                       => start the login process, if no flags are passed, a browser based login will begin
     --username <username>     => username to login with, if password is not specified, you will be prompted for it
     --password <password>     => password to login with, requires the username flag as well
-    --email <email>           => email address to send code to for passwordless authentication
-    --sms <phone>             => phone number to send code to for passwordless authentication
 
 Logout
 
@@ -50,8 +48,6 @@ Setting tenant for services with multiple tenants:
 Examples
   bm identity login --username
   bm identity login --username email@provider.com
-  bm identity login --email
-  bm identity login --sms +61412345678
   bm identity login
 
   bm identity logout

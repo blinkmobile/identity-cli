@@ -37,7 +37,7 @@
     "test": "test"
   },
   "engines": {
-    "node": ">=4",
+    "node": ">=6",
     "npm": ">=3"
   },
   "homepage": "https://github.com/blinkmobile/identity-cli#readme",

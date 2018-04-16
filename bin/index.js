@@ -25,11 +25,8 @@ const cli = meow({
     'password': {
       type: 'string'
     },
-    'email': {
-      type: 'string'
-    },
-    'sms': {
-      type: 'string'
+    'rememberMe': {
+      type: 'boolean'
     }
   }
 })

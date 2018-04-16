@@ -3,6 +3,14 @@
 
 ## Unreleased
 
+### Removed
+
+-   `email` and `sms` login options
+
+### Changed
+
+-   supported versions of node to `>=6`
+
 ## 1.2.1 - 2018-02-02
 
 ### Dependencies
