@@ -3,6 +3,8 @@
 
 ## Unreleased
 
+## 2.0.0 - 2018-07-20
+
 ### Removed
 
 -   `email` and `sms` login options
@@ -10,6 +12,12 @@
 ### Changed
 
 -   supported versions of node to `>=6`
+
+### Dependencies
+
+-   update [@blinkmobile/bm-identity](https://www.npmjs.com/package/@blinkmobile/bm-identity) to [4.0.2](https://github.com/blinkmobile/bm-identity.js/releases/tag/4.0.2) (from [4.0.0](https://github.com/blinkmobile/bm-identity.js/releases/tag/4.0.0))
+
+-   update [update-notifier](https://www.npmjs.com/package/update-notifier) to [2.5.0](https://github.com/yeoman/update-notifier/releases/tag/v2.5.0) (from 2.3.0)
 
 ## 1.2.1 - 2018-02-02
 
