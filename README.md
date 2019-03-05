@@ -26,7 +26,7 @@ Usage: blinkm identity <command>
 
 Where command is one of:
 
-  login, logout, tenant
+  login, logout
 
 Login
 
@@ -38,12 +38,6 @@ Logout
 
   logout                      => logout of the service being extended
 
-Setting tenant for services with multiple tenants:
-
-  tenant                      => Display current and available tenants.
-    <tenantName>              => Set as current tenant and add to available tenants
-    <tenantName> --remove     => Remove from available available tenants
-
 
 Examples
   bm identity login --username
@@ -51,8 +45,4 @@ Examples
   bm identity login
 
   bm identity logout
-
-  bm identity tenant
-  bm identity tenant mytenant
-  bm identity tenant mytenant --remove
 ```

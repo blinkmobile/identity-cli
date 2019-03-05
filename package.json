@@ -14,31 +14,30 @@
     "Matt Carroll <matt.carroll139@gmail.com> (https://github.com/mymattcarroll)"
   ],
   "dependencies": {
-    "@blinkmobile/bm-identity": "4.0.2",
-    "meow": "4.0.0",
+    "@blinkmobile/bm-identity": "5.0.0",
+    "meow": "5.0.0",
     "update-notifier": "2.5.0"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "eslint": "^4.0.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^6.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.0",
+    "ava": "^1.2.1",
+    "eslint": "^5.15.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "fixpack": "^2.3.1",
-    "jsdoc": "^3.4.2",
-    "mockery": "^2.0.0",
+    "jsdoc": "^3.5.5",
+    "mockery": "^2.1.0",
     "npm-bin-ava-tester": "^1.1.0",
-    "proxyquire": "^2.0.1",
-    "yauzl": "^2.7.0"
+    "proxyquire": "^2.1.0"
   },
   "directories": {
     "test": "test"
   },
   "engines": {
-    "node": ">=6",
-    "npm": ">=3"
+    "node": ">=8",
+    "npm": ">=6"
   },
   "homepage": "https://github.com/blinkmobile/identity-cli#readme",
   "keywords": [

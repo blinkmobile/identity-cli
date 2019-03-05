@@ -12,12 +12,11 @@ const help = require('./lib/help')
 
 // this module
 
-const blinkMobileIdentity = new BlinkMobileIdentity(pkg.name)
+const blinkMobileIdentity = new BlinkMobileIdentity()
 
 const commands = {
   login: require('./lib/commands/login.js'),
-  logout: require('./lib/commands/logout.js'),
-  tenant: require('./lib/commands/tenant.js')
+  logout: require('./lib/commands/logout.js')
 }
 
 updateNotifier({ pkg }).notify()

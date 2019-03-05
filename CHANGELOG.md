@@ -1,7 +1,10 @@
 # Change Log
 
-
 ## Unreleased
+
+### Removed
+
+-   ON-3732 # Removed support for NodeJS 6
 
 ## 2.0.0 - 2018-07-20
 
