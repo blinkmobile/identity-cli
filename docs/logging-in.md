@@ -2,8 +2,8 @@
 
 ## Logging In
 
-Some BlinkMobile CLI tools require users to be authenticated before use.
-The `login` command will allow user to authenticate themselves with BlinkMobile via a variety of login providers
+The OneBlink CLI tools require users to be authenticated before use.
+The `login` command will allow user to authenticate themselves with OneBlink via a variety of login providers
 
 `bm identity login` Start a browser based login process.
 - `--username <username>` Start a username and password login process. Omitting <username> will prompt for username.

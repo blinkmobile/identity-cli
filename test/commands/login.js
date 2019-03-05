@@ -6,8 +6,7 @@ const loginCommand = require('../../lib/commands/login.js')
 
 const FLAGS = {
   text: 'abc',
-  numbers: 123,
-  rememberMe: false
+  numbers: 123
 }
 const OPTIONS = {
   blinkMobileIdentity: {
@@ -28,7 +27,7 @@ test.afterEach(t => {
 test.serial('loginCommand() should resolve to a success message', (t) => {
   console.log = function (content) {
     t.is(content, `
-Success! Welcome to BlinkMobile. Be sure to logout when you're finished.
+Success! Welcome to OneBlink. Be sure to logout when you're finished.
 `)
   }
 
@@ -41,7 +40,6 @@ test.serial('loginCommand() should pass the flags argument to blinkMobileIdentit
     blinkMobileIdentity: {
       login: (flags) => {
         t.deepEqual(flags, Object.assign({}, FLAGS, {
-          refreshToken: FLAGS.rememberMe,
           storeJwt: true
         }))
         return Promise.resolve()
@@ -71,5 +69,8 @@ Please fix the error and try again.
   }
 
   return loginCommand(null, FLAGS, options)
-    .then(() => t.is(process.exitCode, 1))
+    .then(() => {
+      t.is(process.exitCode, 1)
+      process.exitCode = 0
+    })
 })

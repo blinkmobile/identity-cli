@@ -48,5 +48,8 @@ Please fix the error and try again.
   }
 
   return logoutCommand(null, null, options)
-    .then(() => t.is(process.exitCode, 1))
+    .then(() => {
+      t.is(process.exitCode, 1)
+      process.exitCode = 0
+    })
 })
