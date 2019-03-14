@@ -2,9 +2,17 @@
 
 ## Unreleased
 
+## 3.0.0 - 2019-03-14
+
 ### Removed
 
 -   ON-3732 # Removed support for NodeJS 6
+
+### Dependencies
+
+-   update [@blinkmobile/bm-identity](https://www.npmjs.com/package/@blinkmobile/bm-identity) to [5.0.0](https://github.com/blinkmobile/bm-identity.js/releases/tag/5.0.0) (from [4.0.2](https://github.com/blinkmobile/bm-identity.js/releases/tag/4.0.2))
+
+-   update [meow](https://www.npmjs.com/package/meow) to [5.0.0](https://github.com/sindresorhus/meow/releases/tag/v5.0.0) (from [4.0.0](https://github.com/sindresorhus/meow/releases/tag/v4.0.0))
 
 ## 2.0.0 - 2018-07-20
 
