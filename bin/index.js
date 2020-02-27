@@ -16,10 +16,13 @@ const help = require('../lib/help')
 const cli = meow({
   help,
   flags: {
-    'username': {
+    username: {
       type: 'string'
     },
-    'password': {
+    password: {
+      type: 'string'
+    },
+    tenant: {
       type: 'string'
     }
   }
