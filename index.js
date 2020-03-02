@@ -12,8 +12,6 @@ const help = require('./lib/help')
 
 // this module
 
-const blinkMobileIdentity = new BlinkMobileIdentity()
-
 const commands = {
   login: require('./lib/commands/login.js'),
   logout: require('./lib/commands/logout.js')
@@ -21,7 +19,7 @@ const commands = {
 
 updateNotifier({ pkg }).notify()
 
-module.exports = function (input, flags) {
+module.exports = function(input, flags) {
   const command = input[0]
 
   if (!command) {
@@ -42,6 +40,10 @@ module.exports = function (input, flags) {
     process.exitCode = 1
     return
   }
+
+  const blinkMobileIdentity = new BlinkMobileIdentity(
+    flags.tenant ? flags.tenant.toUpperCase() : undefined
+  )
 
   commands[command](input.slice(1), flags, {
     blinkMobileIdentity,

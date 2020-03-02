@@ -23,7 +23,8 @@ const cli = meow({
       type: 'string'
     },
     tenant: {
-      type: 'string'
+      type: 'string',
+      default: 'oneblink'
     }
   }
 })
