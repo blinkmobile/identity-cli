@@ -14,7 +14,7 @@
     "Matt Carroll <matt.carroll139@gmail.com> (https://github.com/mymattcarroll)"
   ],
   "dependencies": {
-    "@blinkmobile/bm-identity": "5.0.0",
+    "@blinkmobile/bm-identity": "5.1.0-beta.1",
     "meow": "5.0.0",
     "update-notifier": "2.5.0"
   },
@@ -26,8 +26,8 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "fixpack": "^2.3.1",
-    "jsdoc": "^3.5.5",
+    "fixpack": "^3.0.6",
+    "jsdoc": "^3.6.3",
     "mockery": "^2.1.0",
     "npm-bin-ava-tester": "^1.1.0",
     "proxyquire": "^2.1.0"
