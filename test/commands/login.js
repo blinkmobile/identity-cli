@@ -24,53 +24,68 @@ test.afterEach(t => {
   console.log = t.context.log
 })
 
-test.serial('loginCommand() should resolve to a success message', (t) => {
-  console.log = function (content) {
-    t.is(content, `
+test.serial('loginCommand() should resolve to a success message', t => {
+  console.log = function(content) {
+    t.is(
+      content,
+      `
 Success! Welcome to OneBlink. Be sure to logout when you're finished.
-`)
+`
+    )
   }
 
-  return loginCommand(null, FLAGS, OPTIONS)
-    .then(() => t.is(process.exitCode, undefined))
+  return loginCommand(null, FLAGS, OPTIONS).then(() =>
+    t.is(process.exitCode, undefined)
+  )
 })
 
-test.serial('loginCommand() should pass the flags argument to blinkMobileIdentity.login()', (t) => {
-  const options = {
-    blinkMobileIdentity: {
-      login: (flags) => {
-        t.deepEqual(flags, Object.assign({}, FLAGS, {
-          storeJwt: true
-        }))
-        return Promise.resolve()
+test.serial(
+  'loginCommand() should pass the flags argument to blinkMobileIdentity.login()',
+  t => {
+    const options = {
+      blinkMobileIdentity: {
+        login: flags => {
+          t.deepEqual(flags, {
+            storeJwt: true,
+            username: undefined,
+            password: undefined
+          })
+          return Promise.resolve()
+        }
       }
     }
+    console.log = function() {}
+
+    return loginCommand(null, FLAGS, options).then(() =>
+      t.is(process.exitCode, undefined)
+    )
   }
-  console.log = function () {}
+)
 
-  return loginCommand(null, FLAGS, options)
-    .then(() => t.is(process.exitCode, undefined))
-})
-
-test.serial('loginCommand() should log error if login rejects with error', (t) => {
-  const options = {
-    blinkMobileIdentity: {
-      login: () => Promise.reject(new Error('Error Message'))
+test.serial(
+  'loginCommand() should log error if login rejects with error',
+  t => {
+    const options = {
+      blinkMobileIdentity: {
+        login: () => Promise.reject(new Error('Error Message'))
+      }
     }
-  }
-  console.error = function (content) {
-    t.is(content, `
+    console.error = function(content) {
+      t.is(
+        content,
+        `
 There was a problem while attempting to login:
 
 Error: Error Message
 
 Please fix the error and try again.
-`)
-  }
+`
+      )
+    }
 
-  return loginCommand(null, FLAGS, options)
-    .then(() => {
+    return loginCommand(null, FLAGS, options).then(() => {
       t.is(process.exitCode, 1)
       process.exitCode = 0
     })
-})
+  }
+)
